@@ -3,7 +3,7 @@ from behave import then
 
 @then('Verify {footer_categories_list} categories are shown')
 def footer_categories_shown(context, footer_categories_list):
-    context.app.footer_page.tooter_catefories_shown(footer_categories_list)
+    context.app.footer_page.footer_catefories_shown(footer_categories_list)
 
 
 @then('Verify {copyright_text} sign shown in footer')
