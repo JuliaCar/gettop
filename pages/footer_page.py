@@ -13,7 +13,7 @@ class Footer(Page):
     PRODUCT_RATING = (By.CSS_SELECTOR, "div.star-rating")
     PRODUCT_NAME_PRODUCT_PAGE = (By.CSS_SELECTOR, "h1.product-title.product_title.entry-title")
 
-    def tooter_categories_shown(self, footer_categories_list):
+    def footer_catefories_shown(self, footer_categories_list):
         categories = self.find_elements(*self.FOOTER_CATEGORIES)
         new_footer_categories_list = footer_categories_list.replace(', ', ':').split(':')
         for i in range(len(categories)):

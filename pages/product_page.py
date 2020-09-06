@@ -49,7 +49,7 @@ class Product(Page):
         e = self.find_elements(*self.HOME_CATEGORY_PRODUCT_LINK)
         e[1].click()
 
-    def click_heart_icon(self):             ### was hover_over_image
+    def click_heart_icon(self):
         self.click(*self.IMAGE_HEART_ICON)
 
     def close_zoom_images(self):
