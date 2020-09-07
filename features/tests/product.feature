@@ -1,5 +1,5 @@
 # Created by julia cardenas at 9/4/20
-Feature: Test Scenarios for Product
+Feature: Test Scenarios for Product page
 
   Scenario: Product has image, name, price, description
     Given Open GetTop product macbook-pro-13 page
@@ -14,16 +14,16 @@ Feature: Test Scenarios for Product
     Given Open GetTop product ipad-mini page
     When Hover over product image
     Then Verify that user can click on the heart icon
-#
+
   Scenario: Category link takes users to correct category page
     Given Open GetTop product airpods page
     Then Verify that ACCESSORIES category link takes to correct category page
 
-#  Scenario: "Home" link takes user to Home Page
-#    Given Open GetTop product ipad-air page
-#    ###Then Verify "Home" link takes user to Home Page
-##      ###I don't know what do i need to verify and how
-#
+  Scenario: "Home" link takes user to Home Page
+    Given Open GetTop product ipad-air page
+    Then Click "Home" link
+    Then Verify that link takes to Home page
+
 #  Scenario: Social network logos are present: FB, Twitter, Email, Pinterest LinkedIn
 #    Given Open GetTop product macbook-air page
 ##    Then Verify that Facebook, Twitter, Email, Pinterest, LinkedIn logos are present

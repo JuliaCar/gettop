@@ -22,10 +22,13 @@ def scroll_zoom_images(context):
     context.app.product_page.close_zoom_images()
 
 
-@then('Verify {text_link} link takes user to Home Page')
-def click_home_link(context, text_link):
-    context.app.product_page.click_home_link(text_link)
-    context.app.product_page.vefiry_home_page()
+@then('Click "Home" link')
+def click_home_link(context):
+    context.app.product_page.click_home_link()
+
+@then('Verify that link takes to Home page')
+def verify_home_page(context):
+    context.app.home_page.vefiry_home_page()
 
 
 @then('Verify that {category} category link takes to correct category page')
@@ -34,9 +37,9 @@ def click_category_link(context, category):
     context.app.product_page.open_correct_category_page(category)
 
 
-@then('Verify that {logos} logos are present')
-def logos_present(context, logos):
-    context.app.product_page.logos_present(logos)
+# @then('Verify that {social_icons} logos are present')
+# def logos_present(context, social_icons):
+#     context.app.product_page.logos_present(social_icons)
 
 
 @when('Hover over product image')

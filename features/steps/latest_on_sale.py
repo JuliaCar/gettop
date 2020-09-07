@@ -29,7 +29,7 @@ def price_description_shown(context):
 @then('Verify that user can open Quick View')
 def open_quick_view(context):
     context.app.home_page.open_quick_view()
-
+    context.app.home_page.verify_quick_view_open()
 
 @then('Verify that user can close Quick View')
 def close_quick_view(context):
@@ -39,3 +39,7 @@ def close_quick_view(context):
 @then('Verify that user can see images')
 def quick_view_click_images(context):
     context.app.home_page.quick_view_click_images()
+
+@then('User can click Quick Views add products to cart')
+def quick_view_add_cart(context):
+    context.app.home_page.click_quick_view_and_add_product_to_cart()

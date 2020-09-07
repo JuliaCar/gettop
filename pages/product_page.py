@@ -18,8 +18,14 @@ class Product(Page):
     NOTIFICATION_NO_PRODUCT = (By.CSS_SELECTOR, "p.woocommerce-info")
     HEADER_CATEGORY_PAGE = (By.CSS_SELECTOR, "nav.woocommerce-breadcrumb.breadcrumbs.uppercase")
     HEADER_CHECKOUT_PAGE = (By.CSS_SELECTOR, "a.current")
-    LOGOS = (By.CSS_SELECTOR, "div.social-icons.share-icons.share-row.relative i")
+    SOCIAL_ICONS = (By.CSS_SELECTOR, "div.social-icons.share-icons.share-row.relative i")
     PRODUCT_SUMMERY = (By.CSS_SELECTOR, "div.product-info.summary.col-fit.col.entry-summary.product-summary")
+    MESSAGE_ADDED_CART = (By.CSS_SELECTOR, "div.message-container.container.success-color.medium-text-center a")
+    PLUS_TO_CART = (By.CSS_SELECTOR, "input.plus.button.is-form")
+    MINUS_TO_CART = (By.CSS_SELECTOR, "input.minus.button.is-form")
+    AMOUNT_INPUT_WINDOW = (By.CSS_SELECTOR, "input[type='number']")
+    OUT_OF_STOCK = (By.CSS_SELECTOR, "p.stock.out-of-stock")
+
 
     def open_product_page(self, product_id):
         self.open_page(f'product/{product_id}/')
@@ -27,9 +33,11 @@ class Product(Page):
     def add_product_to_cart(self):
         self.click(*self.ADD_TO_CART_BTN)
 
+
     # product
     def product_name_price_description(self):
         self.find_element(*self.PRODUCT_NAME)
+
         self.find_element(*self.PRODUCT_PRICE)
         self.find_element(*self.PRODUCT_DESCRIPTION)
 
@@ -39,10 +47,10 @@ class Product(Page):
     def scroll_zoom_images(self):
         e = self.find_elements(*self.PRODUCT_IMAGE_ZOOM)
         # print(len(e))
-        for i in range(len(e)+1):
+        for i in range(len(e) + 1):
             self.click(*self.IMAGE_ZOOM_RIGHT_ARROW)
 
-    def click_home_link(self, text_link):
+    def click_home_link(self):
         self.click(*self.HOME_CATEGORY_PRODUCT_LINK)
 
     def click_category_link(self):
@@ -60,13 +68,15 @@ class Product(Page):
         self.actions.move_to_element(product_image)
         self.actions.perform()
 
-    def logos_present(self, logos):
-        logos_icons = self.find_elements(*self.LOGOS)
-        print(len(logos_icons))
-        for i in range(len(logos_icons)):
-            print(logos_icons[i].text)
+    # def logos_present(self, social_icons):
+    #     logos_icons = self.find_elements(*self.SOCIAL_ICONS)
+    #     print(len(logos_icons))
+    #     social_icons_list = social_icons.split(',')
+    #     for i in range(len(logos_icons)):
+    #         # print(logos_icons[i])
+    #         print(social_icons_list[i])
 
-        # latest on sale
+    # latest on sale
     def price_description_shown(self):
         self.find_element(*self.PRODUCT_PRICE)
         self.find_element(*self.PRODUCT_DESCRIPTION)
@@ -83,14 +93,32 @@ class Product(Page):
     # product_categories
     def open_correct_category_page(self, category_name):
         header_category_page = self.find_element(*self.HEADER_CATEGORY_PAGE).text
-        assert category_name in header_category_page,\
+        assert category_name in header_category_page, \
             f'Incorrect header: {header_category_page}, waiting for {category_name}'
 
     # cart
     def verify_checkout_page(self, correct_page):
         self.verify_text(correct_page, *self.HEADER_CHECKOUT_PAGE)
 
-    # old
-    # def verify_size_tooltip(self):
-    #     self.wait_for_element_appear(*self.SIZE_SELECTION_TOOLTIP)
-    #
+    # adding to shopping cart _product
+    def item_added_to_cart(self):
+        self.wait_for_element_appear(*self.MESSAGE_ADDED_CART)
+
+    def click_plus_or_minus_button(self, plus_minus_sign, amount_times):
+        n = 0
+        if plus_minus_sign == '+':
+            while n < int(amount_times):
+                self.click(*self.PLUS_TO_CART)
+                n += 1
+        elif plus_minus_sign == '-':
+            while n < int(amount_times):
+                self.wait_for_element_click(*self.MINUS_TO_CART)
+                n += 1
+        else:
+            f'Something went wrong...'
+
+    def input_amount_items_add_window(self, amount):
+        self.input(amount, *self.AMOUNT_INPUT_WINDOW)
+
+    def our_of_stock(self, text):
+        self.verify_text(text, *self.OUT_OF_STOCK)

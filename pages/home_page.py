@@ -4,13 +4,14 @@ from gettop.pages.base_page import Page
 from time import sleep
 
 class Home(Page):
+
     LEFT_ARROW = (By.CSS_SELECTOR, "button.flickity-button.flickity-prev-next-button.previous")
     RIGHT_ARROW = (By.CSS_SELECTOR, "button.flickity-button.flickity-prev-next-button.next")
     LEFT_DOT = (By.CSS_SELECTOR, "li.dot")
     RIGHT_DOT = (By.CSS_SELECTOR, "li.dot.is-selected")
     BANNER = (By.CSS_SELECTOR, "div.fill.banner-link")
     HEADER_PRODUCT_PAGE = (By.CSS_SELECTOR, "nav.woocommerce-breadcrumb.breadcrumbs.uppercase")
-    LATEST_SALES_HEADER =(By.XPATH, "//*[contains(text(), 'Latest products on sale')]")
+    LATEST_SALES_HEADER = (By.XPATH, "//*[contains(text(), 'Latest products on sale')]")
     PRODUCTS_ON_SALE = (By.CSS_SELECTOR, "div.product-small.box")
     PRODUCTS_ON_SALE_IMAGE = (By.CSS_SELECTOR, "div.image-fade_in_back")
     PRODUCTS_ON_SALE_PRICE = (By.CSS_SELECTOR, "span.price")
@@ -28,26 +29,25 @@ class Home(Page):
     CATEGORIES = (By.CSS_SELECTOR, "h5.uppercase.header-title")
     CATEGORIES_CLICK = (By.CSS_SELECTOR, "div.product-category.col.is-selected")
 
-
-    def banner_left_dot(self, *locator):
+    def banner_left_dot(self):
         self.wait_for_element_click(*self.LEFT_DOT)
 
-    def banner_right_dot(self, *locator):
+    def banner_right_dot(self):
         self.wait_for_element_click(*self.RIGHT_DOT)
 
-    def banner_left_arrow(self, *locator):
+    def banner_left_arrow(self):
         banner_left_arrow = self.find_element(*self.RIGHT_ARROW)
         self.actions.move_to_element(banner_left_arrow)
         self.actions.perform()
         self.click(*self.LEFT_ARROW)
 
-    def banner_right_arrow(self, *locator):
+    def banner_right_arrow(self):
         banner_right_arrow = self.find_element(*self.RIGHT_ARROW)
         self.actions.move_to_element(banner_right_arrow)
         self.actions.perform()
         self.click(*self.RIGHT_ARROW)
 
-    def banner_click(self, *locator):
+    def banner_click(self):
         self.click(*self.BANNER)
 
 #latest on sale
@@ -59,7 +59,7 @@ class Home(Page):
 
     def click_heart_icon(self):
         heart_icon = self.find_element(*self.PRODUCTS_ON_SALE_HEART_ICON)
-        self.actions.move_to_element(heart_icon )
+        self.actions.move_to_element(heart_icon)
         self.actions.perform()
         self.click(*self.PRODUCTS_ON_SALE_HEART_ICON)
 
@@ -68,13 +68,13 @@ class Home(Page):
         print(len(all_products))
         for item_index in range(len(all_products)):
             print(all_products[item_index].text)
-            # assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_ICON_SALE), f"Expected item to have Sale icon"
-            assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_IMAGE), f"Expected item to have image"
-            assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_CATEGORY), f"Expected item to have category"
-            assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_NAME), f"Expected item to have  name"
-            assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_PRICE), f"Expected item to have price"
-            assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_RATING), f"Expected item to have rating"
-            assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_HEART_ICON), f"Expected item to have Heart icon"
+            # assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_ICON_SALE), f"Expectedm Sale icon"
+            assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_IMAGE), f"Expected image"
+            assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_CATEGORY), f"Expected category"
+            assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_NAME), f"Expected name"
+            assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_PRICE), f"Expected price"
+            assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_RATING), f"Expected rating"
+            assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_HEART_ICON), f"Expected Heart icon"
 
     def open_product_sale(self):
         products_on_sale = self.find_elements(*self.PRODUCTS_ON_SALE)
@@ -85,6 +85,9 @@ class Home(Page):
         self.actions.move_to_element(open_quick_view)
         self.actions.perform()
         open_quick_view.click()
+
+    def verify_quick_view_open(self):
+        self.wait_for_element_appear(*self.PRODUCTS_ON_SALE_IMAGE)
 
     def close_quick_view(self):
         self.click(*self.QUICK_VIEW_CLOSE)
@@ -105,8 +108,8 @@ class Home(Page):
         # print(len(categories))
         for index in range(len(categories)):
             # print(categories[index].text)
-            assert categories[index].text in categories_list[
-            index], f"Expected {categories_list[index]}, but got {categories[index].text}"
+            assert categories[index].text in categories_list[index],\
+                f"Expected {categories_list[index]}, but got {categories[index].text}"
             categories = self.find_elements(*self.CATEGORIES)
 
     def correct_page_opens(self):
@@ -119,3 +122,17 @@ class Home(Page):
             assert categories_list[index] in header_name.text, f"Expected {categories_list[index]}, but got {header_name.text}"
             self.open_page()
             categories_click = self.find_elements(*self.CATEGORIES_CLICK)
+
+    def click_quick_view_and_add_product_to_cart(self):
+        open_quick_view = self.find_elements(*self.PRODUCTS_ON_SALE_IMAGE)
+        print(len(open_quick_view))
+        for item in range(len(open_quick_view)):
+            open_quick_view = self.find_elements(*self.QUICK_VIEW_OPEN)
+            open_quick_view_item = open_quick_view.find_element()
+            self.actions.move_to_element( open_quick_view_item)
+            self.actions.perform()
+            open_quick_view.click()
+            self.click(*self.QUICK_VIEW_CLOSE)
+
+    def vefiry_home_page(self):
+        self.wait_for_element_appear(*self.RIGHT_ARROW)
