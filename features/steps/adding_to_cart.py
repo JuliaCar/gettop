@@ -18,6 +18,11 @@ def input_amount_items_add_window(context, amount):
 def text_confirmation_added_cart(context):
     context.app.product_page.item_added_to_cart()
 
+@then('Verify user can click {direction_arrow} arrow')
+def click_left_right_arrow(context, direction_arrow):
+    context.app.product_page.click_left_right_arrow(direction_arrow)
+
+
 @then('Verify user sees {text} message')
 def out_of_stock(context, text):
     context.app.product_page.our_of_stock(text)

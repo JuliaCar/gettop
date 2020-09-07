@@ -25,7 +25,8 @@ class Product(Page):
     MINUS_TO_CART = (By.CSS_SELECTOR, "input.minus.button.is-form")
     AMOUNT_INPUT_WINDOW = (By.CSS_SELECTOR, "input[type='number']")
     OUT_OF_STOCK = (By.CSS_SELECTOR, "p.stock.out-of-stock")
-
+    IMAGE_RIGHT_ARROW = (By.CSS_SELECTOR, "button.flickity-button.flickity-prev-next-button.next")
+    IMAGE_LEFT_ARROW = (By.CSS_SELECTOR, "button.flickity-button.flickity-prev-next-button.previous")
 
     def open_product_page(self, product_id):
         self.open_page(f'product/{product_id}/')
@@ -119,6 +120,23 @@ class Product(Page):
 
     def input_amount_items_add_window(self, amount):
         self.input(amount, *self.AMOUNT_INPUT_WINDOW)
+
+    def click_left_right_arrow(self, direction_arrow):
+        if direction_arrow == 'right':
+            product_image = self.find_element(*self.IMAGE_RIGHT_ARROW)
+            self.actions.move_to_element(product_image)
+            self.actions.perform()
+            product_image.click()
+            product_image.click()
+        elif direction_arrow == 'left':
+            product_image = self.find_element(*self.IMAGE_LEFT_ARROW)
+            self.actions.move_to_element(product_image)
+            self.actions.perform()
+            product_image.click()
+            product_image.click()
+        else:
+            f'Something went wrong....'
+
 
     def our_of_stock(self, text):
         self.verify_text(text, *self.OUT_OF_STOCK)
