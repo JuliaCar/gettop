@@ -27,13 +27,13 @@ class Product(Page):
     OUT_OF_STOCK = (By.CSS_SELECTOR, "p.stock.out-of-stock")
     IMAGE_RIGHT_ARROW = (By.CSS_SELECTOR, "button.flickity-button.flickity-prev-next-button.next")
     IMAGE_LEFT_ARROW = (By.CSS_SELECTOR, "button.flickity-button.flickity-prev-next-button.previous")
+    YOU_MAY_ALSO_LIKE = (By.CSS_SELECTOR, "h3.widget-title.shop-sidebar")
 
     def open_product_page(self, product_id):
         self.open_page(f'product/{product_id}/')
 
     def add_product_to_cart(self):
         self.click(*self.ADD_TO_CART_BTN)
-
 
     # product
     def product_name_price_description(self):
@@ -137,6 +137,9 @@ class Product(Page):
         else:
             f'Something went wrong....'
 
-
     def our_of_stock(self, text):
         self.verify_text(text, *self.OUT_OF_STOCK)
+
+    def you_may_also_like_text_shown(self, text):
+        print(text)
+        self.verify_text(text, *self.YOU_MAY_ALSO_LIKE)
