@@ -1,11 +1,11 @@
 from selenium.webdriver.common.by import By
-from gettop.pages.base_page import Page
+from pages.base_page import Page
 from time import sleep
 
 
 class Product(Page):
     ADD_TO_CART_BTN = (By.NAME, 'add-to-cart')
-    PRODUCT_PRICE = (By.CSS_SELECTOR, "p.price.product-page-price.price-on-sale")
+    PRODUCT_PRICE = (By.CSS_SELECTOR, "p.price.product-page-price ")
     PRODUCT_DESCRIPTION = (By.CSS_SELECTOR, "div.product-short-description")
     PRODUCT_NAME = (By.CSS_SELECTOR, "h1.product-title.product_title.entry-title")
     PRODUCT_IMAGE = (By.CSS_SELECTOR, "img.wp-post-image.skip-lazy")
@@ -18,7 +18,6 @@ class Product(Page):
     NOTIFICATION_NO_PRODUCT = (By.CSS_SELECTOR, "p.woocommerce-info")
     HEADER_CATEGORY_PAGE = (By.CSS_SELECTOR, "nav.woocommerce-breadcrumb.breadcrumbs.uppercase")
     HEADER_CHECKOUT_PAGE = (By.CSS_SELECTOR, "a.current")
-    SOCIAL_ICONS = (By.CSS_SELECTOR, "div.social-icons.share-icons.share-row.relative i")
     PRODUCT_SUMMERY = (By.CSS_SELECTOR, "div.product-info.summary.col-fit.col.entry-summary.product-summary")
     MESSAGE_ADDED_CART = (By.CSS_SELECTOR, "div.message-container.container.success-color.medium-text-center a")
     PLUS_TO_CART = (By.CSS_SELECTOR, "input.plus.button.is-form")
@@ -28,6 +27,8 @@ class Product(Page):
     IMAGE_RIGHT_ARROW = (By.CSS_SELECTOR, "button.flickity-button.flickity-prev-next-button.next")
     IMAGE_LEFT_ARROW = (By.CSS_SELECTOR, "button.flickity-button.flickity-prev-next-button.previous")
     YOU_MAY_ALSO_LIKE = (By.CSS_SELECTOR, "h3.widget-title.shop-sidebar")
+    PRODUCT_TITLES = (By.CSS_SELECTOR, "#product-sidebar .product-title")
+    PRODUCT_1 = (By.CSS_SELECTOR, "a[title='iPhone']")
 
     def open_product_page(self, product_id):
         self.open_page(f'product/{product_id}/')
@@ -38,7 +39,6 @@ class Product(Page):
     # product
     def product_name_price_description(self):
         self.find_element(*self.PRODUCT_NAME)
-
         self.find_element(*self.PRODUCT_PRICE)
         self.find_element(*self.PRODUCT_DESCRIPTION)
 
@@ -69,14 +69,6 @@ class Product(Page):
         self.actions.move_to_element(product_image)
         self.actions.perform()
 
-    # def logos_present(self, social_icons):
-    #     logos_icons = self.find_elements(*self.SOCIAL_ICONS)
-    #     print(len(logos_icons))
-    #     social_icons_list = social_icons.split(',')
-    #     for i in range(len(logos_icons)):
-    #         # print(logos_icons[i])
-    #         print(social_icons_list[i])
-
     # latest on sale
     def price_description_shown(self):
         self.find_element(*self.PRODUCT_PRICE)
@@ -84,12 +76,10 @@ class Product(Page):
 
     # search
     def open_correct_product_page(self, product_name: str):
-        product_name_header = self.find_element(*self.PRODUCT_NAME).text
-        assert product_name in product_name_header, f'Incorrect header: {product_name_header}'
+        self.verify_text(product_name, *self.PRODUCT_NAME)
 
-    def notification_no_product(self, notification_no_product: str):
-        no_product_sign = self.find_element(*self.NOTIFICATION_NO_PRODUCT).text
-        assert notification_no_product in no_product_sign, f'Incorrect header: {no_product_sign}'
+    def notification_no_product(self, notification_no_product):
+        self.verify_text(notification_no_product, *self.NOTIFICATION_NO_PRODUCT)
 
     # product_categories
     def open_correct_category_page(self, category_name):
@@ -140,6 +130,25 @@ class Product(Page):
     def our_of_stock(self, text):
         self.verify_text(text, *self.OUT_OF_STOCK)
 
-    def you_may_also_like_text_shown(self, text):
-        print(text)
-        self.verify_text(text, *self.YOU_MAY_ALSO_LIKE)
+    def you_may_also_like_text_shown(self, block_header):
+        print(block_header)
+        self.verify_text(block_header, *self.YOU_MAY_ALSO_LIKE)
+
+     ### you may like bloke
+    def you_block_contains_products(self):
+        self.find_elements(*self.PRODUCT_TITLES)
+
+    def you_click_product1_take_correct_page(self, product_name):
+        amount = self.find_elements(*self.PRODUCT_TITLES)
+        name = amount[0].click()
+        sleep(3)
+        self.wait_for_element_appear(*self.PRODUCT_NAME)
+        self.verify_text(product_name, *self.PRODUCT_NAME)
+
+    def you_click_product2_take_correct_page(self, product_name):
+        amount = self.find_elements(*self.PRODUCT_TITLES)
+        name = amount[1].click()
+        sleep(2)
+        self.wait_for_element_appear(*self.PRODUCT_NAME)
+        self.verify_text(product_name, *self.PRODUCT_NAME)
+
