@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
-from gettop.pages.base_page import Page
+from pages.base_page import Page
 from time import sleep
 
 class TopNavMenu(Page):
@@ -89,11 +89,12 @@ class TopNavMenu(Page):
 
     def products_in_cart(self, product_1, product_2):
         item_1 = self.find_elements(*self.PRODUCT_1_CART)
+        print(len(item_1))
         print(item_1[1].text)
         assert product_1 in item_1[1].text, f'Incorrect header: {item_1[1].text}'
         item_2 = self.find_elements(*self.PRODUCT_2_CART)
         print(item_2[2].text)
-        # assert product_2 in item_2[1].text, f'Incorrect header: {item_2[1].text}'
+        assert product_2 in item_2[2].text, f'Incorrect header: {item_2[2].text}'
 
     #product categories
     def hover_over_categories_topmenu(self, number_categories):

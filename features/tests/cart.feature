@@ -15,7 +15,6 @@ Feature: Test Scenarios for GetTop shopping cart on top nav menu
     Given Open product macbook-pro-13 page
     When Click on ADD TO CART button
     Then Verify that price in top nav menu cart is correct
-         ####     not sure that it is correct
 
   Scenario: User add products, verify that amount of items shown in top nav menu are correct
     Given Open product airpods-pro page
@@ -24,7 +23,6 @@ Feature: Test Scenarios for GetTop shopping cart on top nav menu
     And Click on ADD TO CART button
     Then Verify that 2 items in cart
 
-  ##5 have to think how to do it with loop Didn't verify 2nd product!!!
   Scenario: User add products to cart and verify correct products and subtotal shown
     Given Open product airpods-pro page
     When Click on ADD TO CART button
@@ -32,7 +30,6 @@ Feature: Test Scenarios for GetTop shopping cart on top nav menu
     And Click on ADD TO CART button
     Then Verify AirPods Pro and iPhone 11 Pro in the cart
     Then Verify that $1,248.00 price shown
-  ##5 have to think how to do it with loop Didn't verify 2nd product!!!
 
   Scenario: User add products to cart and click on "View Cart" takes to cart page
     Given Open product macbook-air page
@@ -41,7 +38,6 @@ Feature: Test Scenarios for GetTop shopping cart on top nav menu
     When Click on ADD TO CART button
     Then Verify can click on View Cart
     And It takes to SHOPPING CART page
-
 
   Scenario: User add products to cart and verify click on "Checkout" on top menu - takes to checkout page
     Given Open product ipad-mini page
