@@ -22,7 +22,10 @@ def text_confirmation_added_cart(context):
 def click_left_right_arrow(context, direction_arrow):
     context.app.product_page.click_left_right_arrow(direction_arrow)
 
-
 @then('Verify user sees {text} message')
 def out_of_stock(context, text):
     context.app.product_page.our_of_stock(text)
+
+@then('Verify clicking back and forward arrows takes through multiple products')
+def back_forward_arrows_products(context):
+    context.app.product_page.back_forward_arrows_products()

@@ -31,6 +31,8 @@ Feature: Test Scenarios for Adding to cart feature
     Given Open GetTop product airpods-pro page
     Then Verify user can click right arrow
     Then Verify user can click left arrow
+    ### TODO add amount of click, for example: ('Verify user can click right arrow 5 times)
+    ### TODO maybe try to write this TC in the for loop
 
   Scenario: If product is out of stock, user sees 'Out of Stock',
    Add to Cart and Checkout buttons are not shown (https://gettop.us/product/land-tee-jack-jones/)
