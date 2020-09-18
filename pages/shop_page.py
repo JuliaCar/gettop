@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import Page
+from selenium.webdriver.support.ui import Select
 from time import sleep
 
 
@@ -17,6 +18,7 @@ class RecentlyViewed(Page):
     PAGE_NUMBER = (By.CSS_SELECTOR, "a.page-number")
     ANGEL_RIGHT = (By.CSS_SELECTOR, "i.icon-angle-right")
     ANGEL_LEFT = (By.CSS_SELECTOR, "i.icon-angle-left")
+    SELECT_SORTING = (By.CSS_SELECTOR, "select.orderby")
 
     def open_shop_page(self, name_page):
         self.open_page(f'{name_page}/')
@@ -93,3 +95,27 @@ class RecentlyViewed(Page):
             sleep(2)
         else:
             print('Something went wrong..Please, put correct page number')
+
+    def sorting_by_price_desc(self):
+        select = Select(self.find_element(*self.SELECT_SORTING))
+        select.select_by_value('price-desc')
+
+    def sorting_by_price(self):
+        select = Select(self.find_element(*self.SELECT_SORTING))
+        select.select_by_value('price')
+
+    def sorting_by_popularity(self):
+        select = Select(self.find_element(*self.SELECT_SORTING))
+        select.select_by_value('popularity')
+
+    def sorting_by_rating(self):
+        select = Select(self.find_element(*self.SELECT_SORTING))
+        select.select_by_value('rating')
+
+    def sorting_by_latest(self):
+        select = Select(self.find_element(*self.SELECT_SORTING))
+        select.select_by_value('date')
+
+
+
+
