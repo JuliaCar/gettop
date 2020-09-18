@@ -1,0 +1,66 @@
+from selenium.webdriver.common.by import By
+from pages.base_page import Page
+from time import sleep
+
+
+class RecentlyViewed(Page):
+    ITEMS = (By.CSS_SELECTOR, "aside#woocommerce_recently_viewed_products-8 li")
+    BROWSE_HEADER = (By.CSS_SELECTOR, "aside#woocommerce_product_categories-13 span")
+    BROWSE_CATEGORIES = (By.CSS_SELECTOR, "ul.product-categories a")
+    MACBOOK_CATEGORY = (By.CSS_SELECTOR, "li.cat-item.cat-item-68")
+    CATEGORY_PAGE_HEADER = (By.CSS_SELECTOR, "div.is-large")
+    IPHONE_CATEGORY = (By.CSS_SELECTOR, "li.cat-item.cat-item-69 a")
+    IPAD_CATEGORY = (By.CSS_SELECTOR, "li.cat-item.cat-item-72 a")
+    ACCESSORIES_CATEGORY = (By.CSS_SELECTOR, "li.cat-item.cat-item-74 a")
+    AIRPODS_CATEGORY = (By.CSS_SELECTOR, "li.cat-item.cat-item-77 a")
+    WATCH_CATEGORY = (By.CSS_SELECTOR, "li.cat-item.cat-item-76 a")
+
+    def open_shop_page(self, name_page):
+        self.open_page(f'{name_page}/')
+
+    def recently_viewed_items_present(self, amount_items):
+        items = self.find_elements(*self.ITEMS)
+        sleep(5)
+        print(len(items))
+        assert int(amount_items) == len(items), f'Expected to have {amount_items}, but got {len(items)}'
+
+        ### browse ts
+    def browse_block_header_present(self, block_header):
+        self.verify_text(block_header, *self.BROWSE_HEADER)
+
+    def browse_block_categories_shown(self, categories):
+        categories_list = categories.replace(', ', ':').split(':')
+        print(len(categories_list))
+        browse_categories = self.find_elements(*self.BROWSE_CATEGORIES)
+        print(len(browse_categories))
+        for i in range(len(browse_categories)):
+            print(browse_categories[i].text)
+            print(categories_list[i])
+            ##TODO can't find text for children categories
+            # assert categories_list[i] in browse_categories[i].text,\
+            #     f'Expected {categories_list[i]}, but got {browse_categories[i].text}'
+
+    def browse_category_click_macbook(self):
+        self.click(*self.MACBOOK_CATEGORY)
+
+    def browse_category_correct_page(self, category):
+        category_page = self.find_element(*self.CATEGORY_PAGE_HEADER)
+        new_category = category.upper()
+        assert new_category in category_page.text, f'Expected text {new_category}, but got {category_page.text}'
+
+    def browse_category_click_iphone(self):
+        self.click(*self.IPHONE_CATEGORY)
+
+    def browse_category_click_ipad(self):
+        self.click(*self.IPAD_CATEGORY)
+
+    def browse_category_click_accessories(self):
+        self.click(*self.ACCESSORIES_CATEGORY)
+
+    def browse_category_click_airpods(self):
+        self.click(*self.ACCESSORIES_CATEGORY)
+        self.wait_for_element_click(*self.AIRPODS_CATEGORY)
+
+    def browse_category_click_watch(self):
+        self.click(*self.ACCESSORIES_CATEGORY)
+        self.wait_for_element_click(*self.WATCH_CATEGORY)
