@@ -14,6 +14,9 @@ class RecentlyViewed(Page):
     ACCESSORIES_CATEGORY = (By.CSS_SELECTOR, "li.cat-item.cat-item-74 a")
     AIRPODS_CATEGORY = (By.CSS_SELECTOR, "li.cat-item.cat-item-77 a")
     WATCH_CATEGORY = (By.CSS_SELECTOR, "li.cat-item.cat-item-76 a")
+    PAGE_NUMBER = (By.CSS_SELECTOR, "a.page-number")
+    ANGEL_RIGHT = (By.CSS_SELECTOR, "i.icon-angle-right")
+    ANGEL_LEFT = (By.CSS_SELECTOR, "i.icon-angle-left")
 
     def open_shop_page(self, name_page):
         self.open_page(f'{name_page}/')
@@ -64,3 +67,29 @@ class RecentlyViewed(Page):
     def browse_category_click_watch(self):
         self.click(*self.ACCESSORIES_CATEGORY)
         self.wait_for_element_click(*self.WATCH_CATEGORY)
+
+    ##products
+    def click_page_number(self, page_number):
+        if int(page_number) == 1:
+            page_one = self.find_elements(*self.PAGE_NUMBER)
+            page_one[1].click()
+        elif int(page_number) == 2:
+            page_two = self.find_elements(*self.PAGE_NUMBER)
+            page_two[1].click()
+            sleep(2)
+        else:
+            print('Something went wrong..Please, put correct page number')
+
+    def verify_page_number_header(self, header_page_number):
+        actual_text = self.find_element(*self.CATEGORY_PAGE_HEADER).text
+        assert header_page_number in actual_text, f'Expected {header_page_number}, but got {actual_text}'
+
+    def verify_arrow_click(self, arrow):
+        if arrow == '>':
+            self.click(*self.ANGEL_RIGHT)
+            sleep(2)
+        elif arrow == '<':
+            self.click(*self.ANGEL_LEFT)
+            sleep(2)
+        else:
+            print('Something went wrong..Please, put correct page number')
