@@ -19,13 +19,20 @@ class RecentlyViewed(Page):
     ANGEL_RIGHT = (By.CSS_SELECTOR, "i.icon-angle-right")
     ANGEL_LEFT = (By.CSS_SELECTOR, "i.icon-angle-left")
     SELECT_SORTING = (By.CSS_SELECTOR, "select.orderby")
+    HOME_LINK = (By.CSS_SELECTOR, "div.is-large a")
+    KNOBS = (By.CSS_SELECTOR, "span.ui-slider-handle")
+    FILTER_BTN = (By.XPATH, "//button[text()='Filter']")
+    NAME_HIGH_END = (By.CSS_SELECTOR, "div.products p.name")
+    RESET_FILTERS = (By.CSS_SELECTOR, "#woocommerce_layered_nav_filters-10 a")
+    MESSAGE = (By.CSS_SELECTOR, "p.woocommerce-info")
+
 
     def open_shop_page(self, name_page):
         self.open_page(f'{name_page}/')
 
     def recently_viewed_items_present(self, amount_items):
         items = self.find_elements(*self.ITEMS)
-        sleep(5)
+        sleep(3)
         print(len(items))
         assert int(amount_items) == len(items), f'Expected to have {amount_items}, but got {len(items)}'
 
@@ -116,6 +123,37 @@ class RecentlyViewed(Page):
         select = Select(self.find_element(*self.SELECT_SORTING))
         select.select_by_value('date')
 
+    ###home
+    def click_home_link(self):
+        self.click(*self.HOME_LINK)
 
+    ###filter
+    def move_left_knot_right(self):
+        knobs = self.find_elements(*self.KNOBS)
+        left_knob = knobs[0]
+        self.actions.click_and_hold(left_knob).move_by_offset(102, 0).perform()
 
+    def click_filter_btn(self):
+        self.click(*self.FILTER_BTN)
 
+    def filter_applied_high_end(self, product_name):
+        self.verify_text(product_name, *self.NAME_HIGH_END)
+
+    def move_right_knot_left(self):
+        knobs = self.find_elements(*self.KNOBS)
+        left_knob = knobs[1]
+        self.actions.click_and_hold(left_knob).move_by_offset(-128, 0).perform()
+
+    def reset_filters(self):
+        filters = self.find_elements(*self.RESET_FILTERS)
+        for i in range(len(filters)):
+            filters = self.find_element(*self.RESET_FILTERS)
+            filters.click()
+
+    def move_left_knob_right_max(self):
+        knobs = self.find_elements(*self.KNOBS)
+        left_knob = knobs[0]
+        self.actions.click_and_hold(left_knob).move_by_offset(240, 0).perform()
+
+    def message_no_product_shown(self, msg_no_match):
+        self.verify_text(msg_no_match, *self.MESSAGE)
