@@ -1,5 +1,5 @@
 # Created by julia cardenas at 8/29/20
-Feature: Test Scenario for top banner
+Feature: Test Scenarios for top banner
 
   Background:
     Given open GetTop home page

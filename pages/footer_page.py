@@ -1,19 +1,19 @@
 from selenium.webdriver.common.by import By
-from gettop.pages.base_page import Page
+from pages.base_page import Page
 
 
 class Footer(Page):
     FOOTER_CATEGORIES = (By.CSS_SELECTOR, "span.widget-title")
     COPYRIGHT = (By.CSS_SELECTOR, "div.copyright-footer")
     BACK_TO_TOP_BTN = (By.CSS_SELECTOR, "i.icon-angle-up")
-    PRODUCTS_LIST_ALL = (By.CSS_SELECTOR, "div.footer-widgets.footer.footer-1 li")
+    PRODUCTS_LIST_ALL = (By.CSS_SELECTOR, "div.row.large-columns-3.mb-0 li") ##div.footer-widgets.footer.footer-1 li")
     PRODUCT_NAME = (By.CSS_SELECTOR, "span.product-title")
     PRODUCT_IMAGE = (By.CSS_SELECTOR, "img.attachment-woocommerce_gallery_thumbnail.size-woocommerce_gallery_thumbnail")
     PRODUCT_PRICE = (By.CSS_SELECTOR, "span.woocommerce-Price-amount.amount")
-    PRODUCT_RATING = (By.CSS_SELECTOR, "div.star-rating")
+    PRODUCT_RATING = (By.CSS_SELECTOR, "div.star-rating span")
     PRODUCT_NAME_PRODUCT_PAGE = (By.CSS_SELECTOR, "h1.product-title.product_title.entry-title")
 
-    def footer_catefories_shown(self, footer_categories_list):
+    def footer_categories_shown(self, footer_categories_list):
         categories = self.find_elements(*self.FOOTER_CATEGORIES)
         new_footer_categories_list = footer_categories_list.replace(', ', ':').split(':')
         for i in range(len(categories)):
@@ -39,8 +39,8 @@ class Footer(Page):
                 f"Expected item to have price"
             assert products_list_all[i].find_element(*self.PRODUCT_IMAGE), \
                 f"Expected item to have image"
-            # assert products_list_all[i].find_element(*self.PRODUCT_RATING),\
-            #     f"Expected item to have star-rating"
+            assert products_list_all[i].find_element(*self.PRODUCT_RATING),\
+                f"Expected item to have star-rating"
 
     def footer_links_categories(self):
         products_list_all = self.find_elements(*self.PRODUCTS_LIST_ALL)

@@ -143,12 +143,16 @@ class Product(Page):
         name = amount[0].click()
         sleep(3)
         self.wait_for_element_appear(*self.PRODUCT_NAME)
-        self.verify_text(product_name, *self.PRODUCT_NAME)
+        # self.verify_text(product_name, *self.PRODUCT_NAME)
+        new_product_name = self.find_element(*self.PRODUCT_NAME)
+        assert new_product_name
+
 
     def you_click_product2_take_correct_page(self, product_name):
         amount = self.find_elements(*self.PRODUCT_TITLES)
         name = amount[1].click()
         sleep(2)
         self.wait_for_element_appear(*self.PRODUCT_NAME)
-        self.verify_text(product_name, *self.PRODUCT_NAME)
-
+        # self.verify_text(product_name, *self.PRODUCT_NAME)
+        new_product_name = self.find_element(*self.PRODUCT_NAME)
+        assert new_product_name

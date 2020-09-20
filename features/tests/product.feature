@@ -33,11 +33,11 @@ Feature: Test Scenarios for Product page
 
   Scenario: Social network logos are present: FB, Twitter, Email, Pinterest LinkedIn
     Given Open GetTop product iphone-11pro page
-    Then Verify that Facebook, Twitter, Email, Pinterest, LinkedIn logos are present
+    Then Verify that Facebook, Twitter, Email, Pinterest, Tumblr logos are present
 
   Scenario: Social network logos are present: FB, Twitter, Email, Pinterest LinkedIn in the LOOP "for"
     Given Open GetTop product iphone-se page
-    Then Verify that Facebook, Twitter, Email, Pinterest, LinkedIn logos are present in the loop
+    Then Verify that Facebook, Twitter, Email, Pinterest, Tumblr logos are present in the loop
 
   Scenario: Clicking on a Facebook link opens a new window to login to social network
     Given Open GetTop product ipad page
@@ -61,10 +61,7 @@ Feature: Test Scenarios for Product page
 
   Scenario: Clicking on a LinkedIn link opens a new window to login to social network
     Given Open GetTop product ss-crew-california-sub-river-island page
-    When Click and switch to a new window with LinkedIn page
+    When Click and switch to a new window with Tumblr page
     Then A user can close new window and go to the original one
 
- ##TODO try to do a loop for open the social pages
-#  Scenario: Clicking on a social network link opens a new window to login to social network
-#    Given Open GetTop product airpods page
-#    Then Verify that Facebook, Twitter, Email, Pinterest, LinkedIn opens new window
+ ##TODO try to do a loop for open the social pages $ verify email.

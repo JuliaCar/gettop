@@ -30,7 +30,7 @@ class DescriptionReview(Page):
         self.input('mjp54321@gmail.com', *self.REVIEW_EMAIL)
         ### todo find how to check box for cookies button
         # self.clik(*self.REVIEW_COOKIES_BUTTON)
-        # self.click(*self.SUBMIT_BUTTON)
+        self.click(*self.SUBMIT_BUTTON)
         sleep(5)
 
     def review_submitted(self):

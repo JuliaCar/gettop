@@ -15,7 +15,7 @@ Feature: Test Scenario for Footer
 
   Scenario: All products in the footer have name, price, image and star-rating
     Then Verify that every product has name, price, image and star-rating
-      ###did not verify star-rating!!!
+      ###TODO Bug! there is no rating in latest category iPhone11
 
   Scenario: Footer has working links to all product categories
-    Then Verify footer has working links for all product categories
+    Then Verify footer has working links to all product categories

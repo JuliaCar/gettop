@@ -4,9 +4,9 @@ Feature:  Test Scenarios for
   Background:
     Given Open GetTop shop page
 
-#  Scenario: User sees correct categories under Browse
-#    Then Verify user can see BROWSE block header
-#    Then Verify user sees Accessories, AirPods, Watches, iPad, iPhone, MacBook categories
+  Scenario: User sees correct categories under Browse
+    Then Verify user can see BROWSE block header
+    Then Verify user sees Accessories, AirPods, Watches, iPad, iPhone, MacBook categories
 
   Scenario: User sees click on MacBook category under Browse and correct page opens
     Then Verify user can click on MacBook category under Browse

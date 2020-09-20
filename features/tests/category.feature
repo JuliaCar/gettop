@@ -1,6 +1,5 @@
-# Created by juliacardenas at 9/16/20
+# Created by julia cardenas at 9/16/20
 Feature: Test Scenarios for GetTop product categories
-  # Enter feature description here
 
   Background:
     Given Open GetTop iphone category page
