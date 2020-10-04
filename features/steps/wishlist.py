@@ -34,3 +34,15 @@ def delete_item_wishlist(context):
 @then('Verify {no_item_wishlist} is shown')
 def no_item_wishlist_text(context, no_item_wishlist):
     context.app.wishlist_page.no_item_wishlist_text(no_item_wishlist)
+
+@then('User sees {msg_product_removed} message')
+def wishlist_successfully_removed_msg(context, msg_product_removed):
+    context.app.wishlist_page.wishlist_successfully_removed_msg(msg_product_removed)
+
+@then('User click on wishlist item')
+def wishlist_click_item(context):
+    context.app.wishlist_page.wishlist_click_item()
+
+@then('Verify it takes to correct product page')
+def wishlist_correct_product_page(context):
+    context.app.wishlist_page.wishlist_correct_product_page()
