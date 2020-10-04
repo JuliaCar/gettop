@@ -29,6 +29,7 @@ Feature: Test Scenarios for top navigation menu - product categories
     And Verify correct ACCESSORIES category page opens
 
     ### TODO Didn't do it, don't know how to verify "can see correct menu options"??
+  ###TODO Lana just need an idea how to do it? Create the list of items in each catefory and then verify them?
 ##  Scenario: User can hover over Mac and see correct menu options
 ##    Given Open GetTop home page
 ##    Then Verify user can hover over MAC category

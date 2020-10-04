@@ -1,6 +1,5 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import Page
-from time import sleep
 
 class DescriptionReview(Page):
     DESCRIPTION_BLOCK = (By.CSS_SELECTOR, "li#tab-title-description a")
@@ -28,10 +27,10 @@ class DescriptionReview(Page):
         self.input("I like this product! The best!", *self.REVIEW_FORM)
         self.input('Julia', *self.REVIEW_AUTHOR)
         self.input('mjp54321@gmail.com', *self.REVIEW_EMAIL)
-        ### todo find how to check box for cookies button
-        # self.clik(*self.REVIEW_COOKIES_BUTTON)
+        ### TODO lana =  find out how to check box for cookies button - link or kye works how to search will be good!!
+        # self.click(*self.REVIEW_COOKIES_BUTTON)
         self.click(*self.SUBMIT_BUTTON)
-        sleep(5)
+        ### TODO Lana how to write this TC and make it reusable and stable if website doesn't let to submit same review second time?
 
     def review_submitted(self):
         self.find_element(*self.REVIEW_SHOWN)

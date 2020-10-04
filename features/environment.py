@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.support.event_firing_webdriver import EventFiringWebDriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.events import AbstractEventListener
-from gettop.app.application import Application
+from app.application import Application
 # from features.logger import MyListener, logger
 
 bs_user = 'juliacardenas2'
@@ -28,7 +28,7 @@ def browser_init(context, name):
     # for headless mode ###
     # context.driver = EventFiringWebDriver(webdriver.Chrome(chrome_options = options), MyListener())
 
-    # ### for browerstack ###
+    ### for browerstack ###
     # desired_cap = {
     #     'browser': 'Chrome',
     #     'browser_version': '84.0',

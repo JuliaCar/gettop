@@ -1,4 +1,4 @@
-# Created by juliacardenas at 9/17/20
+# Created by julia cardenas at 9/17/20
 Feature: Test Scenarios for Products feature
 
   Background:

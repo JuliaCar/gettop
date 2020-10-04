@@ -1,14 +1,15 @@
-from gettop.pages.base_page import Page
-from gettop.pages.top_nav_menu_page import TopNavMenu
-from gettop.pages.shopping_cart_page import ShoppingCart
-from gettop.pages.product_page import Product
-from gettop.pages.home_page import Home
-from gettop.pages.footer_page import Footer
-
-# from gettop.pages.search_result_page import SearchResults
-# from pages.sign_in_page import SignInPage
-# from python_selenium_automation.pages.sign_into_account_page import SignIntoAccount
-
+from pages.base_page import Page
+from pages.top_nav_menu_page import TopNavMenu
+from pages.shopping_cart_page import ShoppingCart
+from pages.product_page import Product
+from pages.home_page import Home
+from pages.footer_page import Footer
+from pages.logos_page import LogosIcon
+from pages.description_review_page import DescriptionReview
+from pages.category_page import Category
+from pages.shop_page import RecentlyViewed
+from pages.checkout_page import Checkout
+from pages.wishlist_page import Wishlist
 
 class Application:
 
@@ -20,7 +21,9 @@ class Application:
         self.product_page = Product(self.driver)
         self.home_page = Home(self.driver)
         self.footer_page = Footer(self.driver)
-        # self.sign_in_page = SignInPage(self.driver)
-        # self.hamburger_menu_page = HamburgerMenu(self.driver)
-        # #self.sign_into_account = SignIntoAccount(self.driver)
-
+        self.logos_page = LogosIcon(self.driver)
+        self.description_review_page = DescriptionReview(self.driver)
+        self.category_page = Category(self.driver)
+        self.shop_page = RecentlyViewed(self.driver)
+        self.checkout_page = Checkout(self.driver)
+        self.wishlist_page = Wishlist(self.driver)

@@ -30,4 +30,4 @@ def user_open_quick_view(context):
 
 @then('User can add products to cart in Quick View')
 def add_product_cart(context):
-    context.app.category_page.add_product_cart_qucik_view()
+    context.app.category_page.add_product_cart_quck_view()

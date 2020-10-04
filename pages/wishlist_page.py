@@ -1,7 +1,6 @@
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from pages.base_page import Page
-from time import sleep
 
 class Wishlist(Page):
     PRODUCT_NAME = (By.CSS_SELECTOR, "td.product-name")
@@ -43,5 +42,6 @@ class Wishlist(Page):
         self.click(*self.PRODUCT_NAME)
 
     # def wishlist_correct_product_page(self):
+    #TODO finish this TC then will be adle to add secont item to wishlist
 
 

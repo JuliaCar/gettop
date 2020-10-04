@@ -29,6 +29,7 @@ class LogosIcon(Page):
         self.actions.move_to_element(logos_icons)
         self.actions.perform()
         sleep(3)
+        ### TODO Lana - all TCs works only with sleep, How to avoid it? Even wait for element appear doesn't help.
         popup_windows = self.wait_for_element_appear(*self.ICON_TOOLTIP)
         popup_windows = self.find_element(*self.ICON_TOOLTIP)
         social_icons_list = social_icons.replace(', ', ':').split(':')

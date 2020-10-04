@@ -64,4 +64,5 @@ Feature: Test Scenarios for Product page
     When Click and switch to a new window with Tumblr page
     Then A user can close new window and go to the original one
 
- ##TODO try to do a loop for open the social pages $ verify email.
+ ##TODO try to do a loop for open the social pages
+ # TODO Lna - how verify email?? why doesn't work and how to verify

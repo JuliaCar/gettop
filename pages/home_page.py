@@ -74,7 +74,7 @@ class Home(Page):
             assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_NAME), f"Expected name"
             assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_PRICE), f"Expected price"
             assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_HEART_ICON), f"Expected Heart icon"
-            ###TODO fix the sale icon and heart icon
+            ###TODO Lana how to fix the sale icon and heart icon??
             # assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_RATING), f"Expected rating, but got {}"
             # assert all_products[item_index].find_element(*self.PRODUCTS_ON_SALE_ICON_SALE), f"Expected Sale icon"
 

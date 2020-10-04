@@ -89,4 +89,4 @@ Feature: Test Scenarios for Checkout feature
 
 #  Scenario: User can select any country from country, state drop down
 #    ######When User can choose country United States, state
-  #TODO was able to do it with select ??
+  #TODO Lana How to do it without select ?? Link or key word will be good!

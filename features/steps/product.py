@@ -43,7 +43,7 @@ def logos_present(context, social_icons):
     context.app.logos_page.logos_present_twitter(social_icons)
     context.app.logos_page.logos_present_email(social_icons)
     context.app.logos_page.logos_present_pinterest(social_icons)
-    context.app.logos_page.logos_present_linkedin(social_icons)
+    context.app.logos_page.logos_present_tumblr(social_icons)
 
 
 @then('Verify that {logos_icons} logos are present in the loop')
@@ -67,9 +67,9 @@ def email_click_switch_new_window(context):
 def pinterst_click_switch_new_window(context):
     context.app.logos_page.pinterest_click_switch_new_window()
 
-@when('Click and switch to a new window with LinkedIn page')
-def linkedin_click_switch_new_window(context):
-    context.app.logos_page.linkedin_click_switch_new_window()
+@when('Click and switch to a new window with Tumblr page')
+def tumblr_click_switch_new_window(context):
+    context.app.logos_page.tumblr_click_switch_new_window()
 
 @then('A user can close new window and go to the original one')
 def switch_old_window(context):

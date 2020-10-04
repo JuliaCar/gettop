@@ -18,7 +18,7 @@ Feature: Test Scenarios for Wishlist feature
 #    Then Move to the wishlist page
 #    Then Verify user can see 4 social logos
 #
- ###TODO cann't add second product to the wishlist #StaleElement :(
+ ###TODO Lana - I add first item in withslist and can't add second product to the wishlist with same function? #StaleElement :(
   Scenario: Add products to wishlist, verify user can remove product and sees a confirmation message
     When Open another product page
     When Add to wishlist by clicking on Heart icon

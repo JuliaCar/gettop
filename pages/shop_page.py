@@ -48,7 +48,7 @@ class RecentlyViewed(Page):
         for i in range(len(browse_categories)):
             print(browse_categories[i].text)
             print(categories_list[i])
-            ##TODO can't find text for children categories
+            ##TODO Lana can't find text for children categories
             # assert categories_list[i] in browse_categories[i].text,\
             #     f'Expected {categories_list[i]}, but got {browse_categories[i].text}'
 
@@ -97,6 +97,7 @@ class RecentlyViewed(Page):
         if arrow == '>':
             self.click(*self.ANGEL_RIGHT)
             sleep(2)
+            ### TODO Lana - works only with sleep, How to avoid it?
         elif arrow == '<':
             self.click(*self.ANGEL_LEFT)
             sleep(2)

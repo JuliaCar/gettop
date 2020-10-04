@@ -3,7 +3,7 @@ from behave import then
 
 @then('Verify {footer_categories_list} categories are shown')
 def footer_categories_shown(context, footer_categories_list):
-    context.app.footer_page.footer_catefories_shown(footer_categories_list)
+    context.app.footer_page.footer_categories_shown(footer_categories_list)
 
 
 @then('Verify {copyright_text} sign shown in footer')
@@ -21,6 +21,6 @@ def footer_products_tags(context):
     context.app.footer_page.footer_products_tags()
 
 
-@then('Verify footer has working links for all product categories')
+@then('Verify footer has working links to all product categories')
 def footer_links_categories(context):
     context.app.footer_page.footer_links_categories()
