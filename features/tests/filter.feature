@@ -1,7 +1,7 @@
 # Created by julia cardenas at 9/18/20
 Feature: Test Scenario for filter feature
-  
-  Background: 
+
+  Background:
     Given Open GetTop shop page
 
   Scenario: "Home" link takes user to Home Page
@@ -27,5 +27,3 @@ Feature: Test Scenario for filter feature
     When User can move left knot to the right to 100%
     And User can click FILTER button
     Then Verify that No products were found matching your selection. text are shown
-
-    ###Todo everyting is good, but will be interesting to write function for moving knobs to the left and right

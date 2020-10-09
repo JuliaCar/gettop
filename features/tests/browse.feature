@@ -31,4 +31,3 @@ Feature:  Test Scenarios for
   Scenario: User sees click on Watch category under Browse and correct page opens
     Then Verify user can click on Watch category under Browse
     Then Verify it takes user Watch page
-

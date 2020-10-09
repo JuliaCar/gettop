@@ -6,4 +6,3 @@ Feature: Test Scenarios for Recently viewed feature
   ##TODO have to get to know which page to open for this TC
   #TODO from Ilya - view 2 -3 products and then verify that same products in the recently viewed items
 #    Then Verify user see 3 recently viewed items
-

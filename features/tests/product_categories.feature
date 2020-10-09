@@ -28,13 +28,22 @@ Feature: Test Scenarios for top navigation menu - product categories
     Then Verify user can click on ACCESSORIES category
     And Verify correct ACCESSORIES category page opens
 
-    ### TODO Didn't do it, don't know how to verify "can see correct menu options"??
-  ###TODO Lana just need an idea how to do it? Create the list of items in each catefory and then verify them?
-##  Scenario: User can hover over Mac and see correct menu options
-##    Given Open GetTop home page
-##    Then Verify user can hover over MAC category
-##    And Verify user can see correct menu options
-##
-##  Scenario: User can hover over iPad and see correct menu options
-##  Scenario: User can hover over Watch and see correct menu options
-##  Scenario: User can hover over Accessories and see correct menu options
+  Scenario: User can hover over Mac and see correct menu options
+    Then Verify user can hover over MAC category
+    And Verify user can see MAC correct menu options MacBook Pro 13-inch, MacBook Pro 16-inch, MacBook Air
+
+  Scenario: User can hover over IPHONE and see correct menu options
+    Then Verify user can hover over IPHONE category
+    And Verify user can see IPHONE correct menu options iPhone 11, iPhone 11 Pro, iPhone SE
+
+  Scenario: User can hover over IPAD and see correct menu options
+    Then Verify user can hover over IPAD category
+    And Verify user can see IPAD correct menu options iPad, iPad Pro, iPad mini, iPad Air
+
+  Scenario: User can hover over Watch and see correct menu options
+    Then Verify user can hover over WATCH category
+    And Verify user can see WATCH correct menu options Watch Series 5, Watch Series 3
+
+  Scenario: User can hover over Accessories and see correct menu options
+    Then Verify user can hover over Accessories category
+    And Verify user can see Accessories correct menu options AirPods with Wireless Charging Case, AirPods Pro

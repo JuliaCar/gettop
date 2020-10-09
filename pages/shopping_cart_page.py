@@ -6,6 +6,3 @@ class ShoppingCart(Page):
 
     def verify_cart_empty_text(self, search_word):
         self.verify_text(search_word, *self.CART_EMPTY)
-
-
-

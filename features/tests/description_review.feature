@@ -17,7 +17,7 @@ Feature: Test Scenario for Description block on Product page
     Given Open GetTop product macbook-pro-16 page
     When User can open review block
     Then Verify that user can submit a review
-    And Verify that review submitted
+#    And Verify that review submitted
 
   Scenario:Correct amount of product reviews are shown
     Given Open GetTop product iphone-se page

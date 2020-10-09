@@ -43,5 +43,3 @@ class Wishlist(Page):
 
     # def wishlist_correct_product_page(self):
     #TODO finish this TC then will be adle to add secont item to wishlist
-
-

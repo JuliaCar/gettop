@@ -138,5 +138,3 @@ class LogosIcon(Page):
             sleep(3)
             self.driver.close()
             self.driver.switch_to_window(current_windows[0])
-
-

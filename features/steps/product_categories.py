@@ -5,10 +5,29 @@ from behave import then
 def hover_over_categories_top_menu(context, number_categories):
     context.app.top_nav_menu_page.hover_over_categories_topmenu(number_categories)
 
+@then('Verify user can hover over MAC category')
+def hover_over_category_mac(context):
+    context.app.top_nav_menu_page.hover_over_category_mac()
 
-@then('Verify user can hover over {category_name} category')
-def hover_over_category(context, category_name):
-    context.app.top_nav_menu_page.hover_over_category(category_name)
+
+@then('Verify user can hover over IPHONE category')
+def hover_over_category_iphone(context):
+    context.app.top_nav_menu_page.hover_over_category_iphone()
+
+
+@then('Verify user can hover over IPAD category')
+def hover_over_category_ipad(context):
+    context.app.top_nav_menu_page.hover_over_category_ipad()
+
+
+@then('Verify user can hover over WATCH category')
+def hover_over_category_watch(context):
+    context.app.top_nav_menu_page.hover_over_category_watch()
+
+
+@then('Verify user can hover over Accessories category')
+def hover_over_category_accessories(context):
+    context.app.top_nav_menu_page.hover_over_category_accessories()
 
 
 @then('Verify user can see correct menu options')
@@ -44,3 +63,28 @@ def click_accessories_category(context):
 @then('Verify correct {category_name} category page opens')
 def correct_category_page_opens(context, category_name):
     context.app.product_page.open_correct_category_page(category_name)
+
+
+@then('Verify user can see MAC correct menu options {menu_options}')
+def correct_menu_options_mac(context, menu_options):
+    context.app.product_page.correct_menu_options_mac(menu_options)
+
+
+@then('Verify user can see IPHONE correct menu options {menu_options}')
+def correct_menu_options_ipone(context, menu_options):
+    context.app.product_page.correct_menu_options_iphone(menu_options)
+
+
+@then('Verify user can see IPAD correct menu options {menu_options}')
+def correct_menu_options_ipad(context, menu_options):
+    context.app.product_page.correct_menu_options_ipad(menu_options)
+
+
+@then('Verify user can see WATCH correct menu options {menu_options}')
+def correct_menu_options_watch(context, menu_options):
+    context.app.product_page.correct_menu_options_watch(menu_options)
+
+
+@then('Verify user can see Accessories correct menu options {menu_options}')
+def correct_menu_options_accessories(context, menu_options):
+    context.app.product_page.correct_menu_options_accessories(menu_options)

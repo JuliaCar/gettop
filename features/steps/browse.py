@@ -36,7 +36,3 @@ def browse_category_click_airpods(context):
 @then('Verify user can click on Watch category under Browse')
 def browse_category_click_watch(context):
     context.app.shop_page.browse_category_click_watch()
-
-
-
-

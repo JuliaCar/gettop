@@ -29,6 +29,11 @@ class TopNavMenu(Page):
     PRODUCT_1_CART = (By.XPATH, "//*[contains(text(), 'AirPods Pro')]")
     PRODUCT_2_CART = (By.XPATH, "//*[contains(text(), 'iPhone 11 Pro')]")
     VIEW_CART_BTN = (By.CSS_SELECTOR, "p.woocommerce-mini-cart__buttons.buttons a.button.wc-forward")
+    MAC = (By.CSS_SELECTOR, "li#menu-item-468")
+    IPHONE = (By.CSS_SELECTOR, "li#menu-item-469")
+    IPAD = (By.CSS_SELECTOR, "li#menu-item-470")
+    WATCH = (By.CSS_SELECTOR, "li#menu-item-471")
+    ACCESSORIES = (By.CSS_SELECTOR, "li#menu-item-472")
 
     #logo"
     def logo_click(self):
@@ -37,8 +42,9 @@ class TopNavMenu(Page):
     #account
     def account_icon_login_form(self, login_form):
         self.wait_for_element_click(*self.ACCOUNT_ICON)
-        text = self.find_element(*self.LOGIN_PAGE_TEXT)
-        print(text.text)
+        self.wait_for_element_appear(*self.LOGIN_PAGE_TEXT)
+        login_text = self.find_element(*self.LOGIN_PAGE_TEXT)
+        print(login_text.text)
         self.verify_text(login_form, *self.LOGIN_PAGE_TEXT)
 
     def hover_over_search_window(self, product_name):
@@ -106,11 +112,35 @@ class TopNavMenu(Page):
             assert departments[i].text in depar_list, f'Incorrect name of department: {departments[i].text}'
             departments = self.find_elements(*self.DEPARTMENTS)
 
-    def hover_over_category(self, category_name):
-        topmenu_category = self.find_element(*self.DEPARTMENTS)
+    def hover_over_category_mac(self):
+        topmenu_category = self.find_element(*self.MAC)
         self.actions.move_to_element(topmenu_category)
         self.actions.perform()
-        self.verify_text(category_name, *self.DEPARTMENTS)
+
+
+    def hover_over_category_iphone(self):
+        topmenu_category = self.find_element(*self.IPHONE)
+        self.actions.move_to_element(topmenu_category)
+        self.actions.perform()
+
+
+    def hover_over_category_ipad(self):
+        topmenu_category = self.find_element(*self.IPAD)
+        self.actions.move_to_element(topmenu_category)
+        self.actions.perform()
+
+
+    def hover_over_category_watch(self):
+        topmenu_category = self.find_element(*self.WATCH)
+        self.actions.move_to_element(topmenu_category)
+        self.actions.perform()
+
+
+    def hover_over_category_accessories(self):
+        topmenu_category = self.find_element(*self.ACCESSORIES)
+        self.actions.move_to_element(topmenu_category)
+        self.actions.perform()
+
 
     def department_menu_options(self):
         mac_options_list = ('MacBook Pro 13-inch', 'MacBook Pro 16-inch', 'MacBook Air')
@@ -120,6 +150,7 @@ class TopNavMenu(Page):
             print(mac_options_web[i].text)
             assert mac_options_web[i].text in mac_options_list[i], f'Incorrect options: {mac_options_web[i].text}, waiting for {mac_options_list}'
             print(mac_options_list[i])
+
 
     def click_view_cart_btn(self):
         self.click(*self.VIEW_CART_BTN)

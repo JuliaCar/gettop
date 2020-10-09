@@ -29,6 +29,11 @@ class Product(Page):
     YOU_MAY_ALSO_LIKE = (By.CSS_SELECTOR, "h3.widget-title.shop-sidebar")
     PRODUCT_TITLES = (By.CSS_SELECTOR, "#product-sidebar .product-title")
     PRODUCT_1 = (By.CSS_SELECTOR, "a[title='iPhone']")
+    MENU_OPTIONS_MAC = (By.CSS_SELECTOR, "li#menu-item-468 li a")
+    MENU_OPTIONS_IPHONE = (By.CSS_SELECTOR, "li#menu-item-469 li a")
+    MENU_OPTIONS_IPAD = (By.CSS_SELECTOR, "li#menu-item-470 li a")
+    MENU_OPTIONS_WATCH = (By.CSS_SELECTOR, "li#menu-item-471 li a")
+    MENU_OPTIONS_ACCESSORIES = (By.CSS_SELECTOR, "li#menu-item-472 li a")
 
     def open_product_page(self, product_id):
         self.open_page(f'product/{product_id}/')
@@ -86,6 +91,37 @@ class Product(Page):
         header_category_page = self.find_element(*self.HEADER_CATEGORY_PAGE).text
         assert category_name in header_category_page, \
             f'Incorrect header: {header_category_page}, waiting for {category_name}'
+
+    def correct_menu_options_mac(self, menu_options):
+        options = self.find_elements(*self.MENU_OPTIONS_MAC)
+        menu = menu_options.replace(', ', ':').split(':')
+        for i in range(len(options)):
+            assert options[i].text == menu[i], f'Expected text {menu[i]}, but got {options[i].text}'
+
+    def correct_menu_options_iphone(self, menu_options):
+        options = self.find_elements(*self.MENU_OPTIONS_IPHONE)
+        menu = menu_options.replace(', ', ':').split(':')
+        for i in range(len(options)):
+            assert options[i].text == menu[i], f'Expected text {menu[i]}, but got {options[i].text}'
+
+    def correct_menu_options_ipad(self, menu_options):
+        options = self.find_elements(*self.MENU_OPTIONS_IPAD)
+        menu = menu_options.replace(', ', ':').split(':')
+        for i in range(len(options)):
+            assert options[i].text == menu[i], f'Expected text {menu[i]}, but got {options[i].text}'
+
+
+    def correct_menu_options_watch(self, menu_options):
+        options = self.find_elements(*self.MENU_OPTIONS_WATCH)
+        menu = menu_options.replace(', ', ':').split(':')
+        for i in range(len(options)):
+            assert options[i].text == menu[i], f'Expected text {menu[i]}, but got {options[i].text}'
+
+    def correct_menu_options_accessories(self, menu_options):
+        options = self.find_elements(*self.MENU_OPTIONS_ACCESSORIES)
+        menu = menu_options.replace(', ', ':').split(':')
+        for i in range(len(options)):
+            assert options[i].text == menu[i], f'Expected text {menu[i]}, but got {options[i].text}'
 
     # cart
     def verify_checkout_page(self, correct_page):
