@@ -45,7 +45,7 @@ class TopNavMenu(Page):
         self.wait_for_element_appear(*self.LOGIN_PAGE_TEXT)
         login_text = self.find_element(*self.LOGIN_PAGE_TEXT)
         print(login_text.text)
-        self.verify_text(login_form, *self.LOGIN_PAGE_TEXT)
+        self.verify_text(login_form.upper(), *self.LOGIN_PAGE_TEXT)
 
     def hover_over_search_window(self, product_name):
         open_search_window = self.find_element(*self.SEARCH_ICON)
